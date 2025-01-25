@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Player1Body
+  - Player2Body
+  - Player1Sword
+  - Player2Sword
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,48 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Movement2 : MonoBehaviour // Add MonoBehaviour to attach it to a GameObject
+{
+    P2_Input_Actions inputActions;
+    InputAction moveAction;
+
+    [SerializeField] float speed=6;
+    Vector2 direction;
+
+    void Start()
+    {
+        inputActions = new P2_Input_Actions();
+        inputActions.Player.Enable();
+        inputActions.Player.Move.performed += SetInput;
+        inputActions.Player.Move.canceled += SetInput;
+    }
+
+    private void SetInput(InputAction.CallbackContext ctx)
+    {
+        direction = ctx.ReadValue<Vector2>();
+        print(direction);
+    }
+
+    void Update()
+    {
+        MovePlayer();
+    }
+
+
+    void MovePlayer()
+    {    
+            transform.position += new Vector3(direction.x, 0, direction.y) * speed*Time.deltaTime; // Apply movement
+       
+
+    }
+
+    private void OnDisable()
+    {
+
+        inputActions.Player.Move.performed -= SetInput;
+        inputActions.Player.Move.canceled -= SetInput;
+
+
+    }
+}
