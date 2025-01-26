@@ -20,8 +20,9 @@ public class Movement : MonoBehaviour // Add MonoBehaviour to attach it to a Gam
 
     private void SetInput(InputAction.CallbackContext ctx)
     {
-        direction = ctx.ReadValue<Vector2>();
-        print(direction);
+        if (inputActions != null)
+            direction = ctx.ReadValue<Vector2>();
+        
     }
 
     void Update()
@@ -40,5 +41,6 @@ public class Movement : MonoBehaviour // Add MonoBehaviour to attach it to a Gam
     {
         inputActions.Player.Move.performed -= SetInput;
         inputActions.Player.Move.canceled -= SetInput;
+        inputActions.Player.Disable();
     }
 }

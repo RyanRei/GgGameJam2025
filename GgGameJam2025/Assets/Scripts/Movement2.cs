@@ -20,8 +20,9 @@ public class Movement2 : MonoBehaviour // Add MonoBehaviour to attach it to a Ga
 
     private void SetInput(InputAction.CallbackContext ctx)
     {
+        if (inputActions != null) 
         direction = ctx.ReadValue<Vector2>();
-        print(direction);
+      
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class Movement2 : MonoBehaviour // Add MonoBehaviour to attach it to a Ga
 
         inputActions.Player.Move.performed -= SetInput;
         inputActions.Player.Move.canceled -= SetInput;
-
+        inputActions.Player.Disable();
 
     }
 }

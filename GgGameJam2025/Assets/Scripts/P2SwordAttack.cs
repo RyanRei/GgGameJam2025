@@ -9,10 +9,12 @@ public class P2SwordAttack : MonoBehaviour
     InputAction attackAction;
 
     [SerializeField] private SplineAnimate splineAnimate; // Reference to Spline Animate
-
+    public Animator animator;
+    public audiomanager audioM;
     void Start()
     {
         // Initialize Input Actions
+        animator = gameObject.GetComponent<Animator>();
         inputActions = new P2_Input_Actions();
         inputActions.Player.Enable();
 
@@ -23,7 +25,9 @@ public class P2SwordAttack : MonoBehaviour
 
     private void OnAttackPerformed(InputAction.CallbackContext context)
     {
-        TriggerAttack(); // Trigger the attack animation
+        animator.SetTrigger("Attack1");
+        audioM.playRandomSwing();
+        //TriggerAttack(); // Trigger the attack animation
     }
 
     private void TriggerAttack()
