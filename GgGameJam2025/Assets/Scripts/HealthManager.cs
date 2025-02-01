@@ -18,6 +18,10 @@ public class HealthManager : MonoBehaviour
     public audiomanager audioM;
     public bool roundEnded = false;
 
+
+
+    public float booster = 0;
+
     private RoundEnd roundEndManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
