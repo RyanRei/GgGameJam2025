@@ -3,9 +3,12 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     public Image healthBarP1;
-    public float healthAmountP1 = 100f;
+    public Image healthBarP1_2;
+
+    public float healthAmountP1 = 400f;
     public Image healthBarP2;
-    public float healthAmountP2 = 100f;
+    public Image healthBarP2_2;
+    public float healthAmountP2 = 400f;
 
     private Color fullHealthColor = Color.green;
     private Color lowHealthColor = Color.red;
@@ -20,7 +23,9 @@ public class HealthManager : MonoBehaviour
 
 
 
-    public float booster = 0;
+    public float boosterP1 = 0;
+    public float boosterP2 = 0; 
+    public float boosterRate = 0;
 
     private RoundEnd roundEndManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -79,14 +84,17 @@ public class HealthManager : MonoBehaviour
         {
             healthAmountP1 -= damage;
             healthBarP1.fillAmount = healthAmountP1 / 100f;
-            
-     
+            healthBarP1_2.fillAmount = healthAmountP1 / 100f;
+
+
+
         }
         else
         {
             healthAmountP2 -= damage;
             healthBarP2.fillAmount = healthAmountP2 / 100f;
-            
+            healthBarP2_2.fillAmount = healthAmountP2 / 100f;
+
         }
     }
     public void resetHealth()
