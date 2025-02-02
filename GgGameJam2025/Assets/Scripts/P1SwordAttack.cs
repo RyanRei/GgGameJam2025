@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
+using System.Collections;
+using UnityEngine.VFX;
 
 public class P1SwordAttack : MonoBehaviour
 {
@@ -9,6 +12,9 @@ public class P1SwordAttack : MonoBehaviour
     InputAction attackAction;
     InputAction ultimateAction;
     public audiomanager audioM;
+
+    public VisualEffect vfx;
+    public VisualEffect vfxUlt;
 
     [SerializeField] private SplineAnimate splineAnimate; // Reference to Spline Animate
     public Animator animator;
@@ -52,9 +58,16 @@ public class P1SwordAttack : MonoBehaviour
         }
     }
 
+   private IEnumerator vfxStart()
+    {
+        vfx.enabled = true;
+        yield return new WaitForSeconds(0.32f);
+        vfx.enabled = false;
+    }
 
     
-    
+
+
 
     private void OnDisable()
     {
