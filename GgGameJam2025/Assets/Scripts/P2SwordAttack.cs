@@ -12,12 +12,13 @@ public class P2SwordAttack : MonoBehaviour
     InputAction attackAction;
     InputAction ultimateAction;
     public audiomanager audioM;
-
+    public HealthManager healthManager;
     public VisualEffect vfx;
 
     //[SerializeField] private SplineAnimate splineAnimate; // Reference to Spline Animate
     public Animator animator;
     public Animator animator2;
+    public bool ultimateActivate=false;
     void Start()
     {
 
@@ -38,7 +39,13 @@ public class P2SwordAttack : MonoBehaviour
 
     private void UltimateAction_performed(InputAction.CallbackContext obj)
     {
-        animator2.SetTrigger("Ultimate");
+        if (ultimateActivate)
+        {
+            animator2.SetTrigger("Ultimate");
+            ultimateActivate = false;
+            healthManager.booster2.fillAmount = 0;
+            healthManager.boosterP2 = 0;
+        }
     }
 
     private void OnAttackPerformed(InputAction.CallbackContext context)

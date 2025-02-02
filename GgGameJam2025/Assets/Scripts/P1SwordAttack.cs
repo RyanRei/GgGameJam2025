@@ -19,6 +19,9 @@ public class P1SwordAttack : MonoBehaviour
     [SerializeField] private SplineAnimate splineAnimate; // Reference to Spline Animate
     public Animator animator;
     public Animator animator2;
+    public HealthManager healthManager;
+
+    public bool ultimateActivate = false;
     void Start()
     {
 
@@ -38,8 +41,12 @@ public class P1SwordAttack : MonoBehaviour
     }
 
     private void UltimateAction_performed(InputAction.CallbackContext obj)
-    {
-        animator2.SetTrigger("Ultimate");
+    {   if (ultimateActivate) {
+            animator2.SetTrigger("Ultimate");
+            ultimateActivate = false;
+            healthManager.booster1.fillAmount=0;
+            healthManager.boosterP1 = 0;
+        }
     }
 
     private void OnAttackPerformed(InputAction.CallbackContext context)
